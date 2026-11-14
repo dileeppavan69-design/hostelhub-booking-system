@@ -3,15 +3,26 @@
  * Executes all 15 tests covering CRUD, Search, Join, Validation, and the 3 Twist Tests
  */
 
+const { Readable } = require('stream');
 const { EventEmitter } = require('events');
 const { app, seedDatabase } = require('./server');
 
 function makeRequest(method, urlPath, body = null) {
   return new Promise((resolve) => {
-    const req = new EventEmitter();
+    const payload = body ? JSON.stringify(body) : null;
+    const req = new Readable({
+      read() {
+        if (payload) this.push(payload);
+        this.push(null);
+      }
+    });
+
     req.method = method;
     req.url = urlPath;
-    req.headers = { 'content-type': 'application/json' };
+    req.headers = {
+      'content-type': 'application/json',
+      'content-length': payload ? Buffer.byteLength(payload) : 0
+    };
 
     const res = new EventEmitter();
     res.statusCode = 200;
@@ -19,6 +30,8 @@ function makeRequest(method, urlPath, body = null) {
     let responseBody = '';
 
     res.setHeader = (k, v) => { res.headers[k.toLowerCase()] = v; };
+    res.getHeader = (k) => res.headers[k.toLowerCase()];
+    res.removeHeader = (k) => { delete res.headers[k.toLowerCase()]; };
     res.status = (c) => { res.statusCode = c; return res; };
     res.json = (d) => {
       res.setHeader('content-type', 'application/json');
@@ -38,8 +51,6 @@ function makeRequest(method, urlPath, body = null) {
     };
 
     app(req, res);
-    if (body) req.emit('data', Buffer.from(JSON.stringify(body)));
-    req.emit('end');
   });
 }
 
