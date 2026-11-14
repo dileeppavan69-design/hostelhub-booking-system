@@ -1,0 +1,4 @@
+node_modules/
+hostelhub.db
+npm-debug.log*
+.DS_Store
