@@ -2,11 +2,12 @@
   "name": "hostelhub",
   "version": "1.0.0",
   "description": "HostelHub - Room Allotment Backend System (NU-AIAGAI2C-G10)",
-  "main": "src/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "node --watch src/server.js",
-    "test": "node test/api.test.js"
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node test.js",
+    "seed": "node -e \"require('./server').seedDatabase().then(() => console.log('Seeded!'))\""
   },
   "dependencies": {
     "express": "^4.21.2",

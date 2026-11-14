@@ -1,14 +1,10 @@
 /**
- * HostelHub Automated Test Suite
- * Part 5: Twist rule & Test Verification
- * Validates all CRUD, Join, Search, Validation, and the 3 Twist Tests
- * Uses in-memory direct dispatch to test without requiring network port binding.
+ * HostelHub Verification Test Suite (Single-Folder Runner)
+ * Executes all 15 tests covering CRUD, Search, Join, Validation, and the 3 Twist Tests
  */
 
 const { EventEmitter } = require('events');
-const app = require('../src/app');
-const db = require('../src/db/database');
-const seed = require('../src/db/seed');
+const { app, seedDatabase } = require('./server');
 
 function makeRequest(method, urlPath, body = null) {
   return new Promise((resolve) => {
@@ -22,41 +18,27 @@ function makeRequest(method, urlPath, body = null) {
     res.headers = {};
     let responseBody = '';
 
-    res.setHeader = (key, val) => {
-      res.headers[key.toLowerCase()] = val;
-    };
-    res.status = (code) => {
-      res.statusCode = code;
-      return res;
-    };
-    res.json = (data) => {
+    res.setHeader = (k, v) => { res.headers[k.toLowerCase()] = v; };
+    res.status = (c) => { res.statusCode = c; return res; };
+    res.json = (d) => {
       res.setHeader('content-type', 'application/json');
-      res.end(JSON.stringify(data));
+      res.end(JSON.stringify(d));
       return res;
     };
-    res.send = (data) => {
-      if (typeof data === 'object') return res.json(data);
-      res.end(data);
+    res.send = (d) => {
+      if (typeof d === 'object') return res.json(d);
+      res.end(d);
       return res;
     };
     res.end = (chunk) => {
       if (chunk) responseBody += chunk;
       let parsed;
-      try {
-        parsed = JSON.parse(responseBody);
-      } catch (e) {
-        parsed = responseBody;
-      }
+      try { parsed = JSON.parse(responseBody); } catch (e) { parsed = responseBody; }
       resolve({ status: res.statusCode, body: parsed });
     };
 
-    // Invoke app handler
     app(req, res);
-
-    // Push data
-    if (body) {
-      req.emit('data', Buffer.from(JSON.stringify(body)));
-    }
+    if (body) req.emit('data', Buffer.from(JSON.stringify(body)));
     req.emit('end');
   });
 }
@@ -66,8 +48,7 @@ async function runTests() {
   console.log(' RUNNING HOSTELHUB VERIFICATION TEST SUITE (NU-AIAGAI2C-G10)');
   console.log('========================================================\n');
 
-  // Seed clean database state
-  await seed();
+  await seedDatabase();
 
   let passed = 0;
   let failed = 0;
@@ -165,7 +146,6 @@ async function runTests() {
   console.log('\n--- VERIFYING BRIEF TWIST TESTS ---');
 
   await assertTest('Test 1: Return a allotment -> 200', async () => {
-    // Allotment 1 is active (Alex Johnson in Room 101)
     const res = await makeRequest('POST', '/allotments/1/return', {
       return_date: '2026-11-14T12:00:00Z'
     });
@@ -176,7 +156,6 @@ async function runTests() {
   });
 
   await assertTest('Test 2: Return it again -> 409 and message "Already returned"', async () => {
-    // Returning allotment 1 a second time
     const res = await makeRequest('POST', '/allotments/1/return');
     if (res.status !== 409) throw new Error(`Expected 409, got ${res.status}`);
     if (res.body.message !== 'Already returned') {
@@ -188,7 +167,6 @@ async function runTests() {
     const res = await makeRequest('GET', '/residents/1/history');
     if (res.status !== 200) throw new Error(`Expected 200, got ${res.status}`);
     if (!Array.isArray(res.body)) throw new Error('Expected array of history items');
-    // Check if Allotment 1 (now returned) and Allotment 2 (returned during seed) are listed
     const foundAllotment1 = res.body.find((item) => item.allotment_id === 1);
     if (!foundAllotment1) throw new Error('Recently returned allotment 1 is not listed in history');
     if (!foundAllotment1.room_name || !foundAllotment1.resident_name) {
@@ -200,11 +178,8 @@ async function runTests() {
   console.log(` TEST RESULTS: ${passed} PASSED, ${failed} FAILED`);
   console.log('========================================================\n');
 
-  if (failed > 0) {
-    process.exit(1);
-  } else {
-    process.exit(0);
-  }
+  if (failed > 0) process.exit(1);
+  else process.exit(0);
 }
 
 runTests().catch((err) => {
