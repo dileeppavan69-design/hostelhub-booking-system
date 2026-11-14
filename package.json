@@ -1,7 +1,8 @@
 {
-  "name": "hostelhub",
+  "name": "hostelhub-room-allotment-nu-aiagai2c-g10",
   "version": "1.0.0",
-  "description": "HostelHub - Room Allotment Backend System (NU-AIAGAI2C-G10)",
+  "description": "HostelHub - Room Allotment Backend Management System (NU-AIAGAI2C-G10)",
+  "author": "Naveen U (Section AIAGAI2C, Group 10 of 15, Card 160 of 375)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

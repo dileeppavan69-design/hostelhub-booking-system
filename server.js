@@ -1,8 +1,12 @@
 /**
  * ============================================================================
  * HostelHub - Room Allotment Backend System
- * Group Code: NU-AIAGAI2C-G10 | Theme 10 of 30: Room Allotment
- * Course: Backend Development Fundamentals (Modules 1 to 3)
+ * Course: Backend Development Fundamentals (Modules 1 to 3) - 100 Marks
+ * Student Lead: Naveen U
+ * Section: AIAGAI2C | Group: Group 10 of 15
+ * Student Card: Card 160 of 375
+ * Group Code: NU-AIAGAI2C-G10
+ * Theme: Theme 10 of 30 · Room allotment
  *
  * ALL-IN-ONE SINGLE FOLDER ARCHITECTURE:
  * - Part 1: Server and routes (Express setup, routes, status codes)
@@ -10,6 +14,7 @@
  * - Part 3: REST endpoints (CRUD for rooms and the mandatory JOIN endpoint)
  * - Part 4: Validation and search (Input checks, messages, search by query)
  * - Part 5: Twist rule (Return flow: 409 "Already returned", resident history)
+ * - Part 6: Postman collection and README
  * ============================================================================
  */
 
@@ -26,7 +31,6 @@ let express;
 try {
   express = require('express');
 } catch (e) {
-  // Built-in Express compatibility engine using Node.js 'http' module
   function createRouter() {
     const stack = [];
     function normalizePath(p) { return (!p || p === '/') ? '/' : p.replace(/\/+$/, ''); }
@@ -366,7 +370,10 @@ app.get('/', (req, res) => {
   res.status(200).json({
     project: 'HostelHub',
     version: '1.0.0',
-    group: 'NU-AIAGAI2C-G10',
+    lead: 'Naveen U',
+    section: 'AIAGAI2C',
+    group: 'Group 10 of 15 (NU-AIAGAI2C-G10)',
+    card: 'Card 160 of 375',
     theme: 'Theme 10 of 30 - Room allotment',
     description: 'Hostel Room Allotment Backend System (All-in-one single folder)',
     endpoints: {
@@ -723,7 +730,8 @@ async function startServer() {
     console.log('====================================================');
     console.log(` HostelHub API Server is running on port ${PORT}`);
     console.log(` Local URL: http://localhost:${PORT}`);
-    console.log(' Group: NU-AIAGAI2C-G10 | Theme 10: Room allotment');
+    console.log(' Student Lead: Naveen U | Section: AIAGAI2C | Group 10 of 15');
+    console.log(' Code: NU-AIAGAI2C-G10 | Card: 160 of 375 | Theme 10: Room allotment');
     console.log('====================================================');
   });
   return server;
