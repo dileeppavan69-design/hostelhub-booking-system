@@ -1,0 +1,510 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office'
+xmlns:w='urn:schemas-microsoft-com:office:word'
+xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>HostelHub Group Assignment Report</title>
+<!--[if gte mso 9]>
+<xml>
+ <w:WordDocument>
+  <w:View>Print</w:View>
+  <w:Zoom>100</w:Zoom>
+  <w:DoNotOptimizeForBrowser/>
+ </w:WordDocument>
+</xml>
+<![endif]-->
+<style>
+body {
+    font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.4;
+    color: #333333;
+    margin: 1in;
+}
+h1 {
+    font-size: 20pt;
+    color: #0d47a1;
+    margin-bottom: 4px;
+    border-bottom: 2px solid #0d47a1;
+    padding-bottom: 6px;
+}
+h2 {
+    font-size: 14pt;
+    color: #1565c0;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 4px;
+}
+h3 {
+    font-size: 12pt;
+    color: #1976d2;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 14px;
+    font-size: 10pt;
+}
+th, td {
+    border: 1px solid #b0bec5;
+    padding: 6px 10px;
+    text-align: left;
+}
+th {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+    font-weight: bold;
+}
+tr:nth-child(even) {
+    background-color: #f9fbfd;
+}
+blockquote {
+    border-left: 4px solid #1976d2;
+    background-color: #f0f4f8;
+    padding: 8px 14px;
+    margin: 10px 0;
+    font-style: italic;
+    color: #2c3e50;
+}
+code {
+    font-family: 'Consolas', 'Courier New', monospace;
+    background-color: #f4f6f8;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 9.5pt;
+}
+pre {
+    background-color: #f4f6f8;
+    border: 1px solid #cfd8dc;
+    padding: 10px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 9pt;
+    white-space: pre-wrap;
+    line-height: 1.3;
+}
+.header-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+.header-table td {
+    border: 1px solid #90a4ae;
+    padding: 6px 10px;
+    font-size: 10.5pt;
+}
+.badge-group {
+    background-color: #e8eaf6;
+    font-weight: bold;
+    color: #1a237e;
+}
+</style>
+</head>
+<body>
+
+<!-- STUDENT METADATA TABLE -->
+<table class="header-table">
+  <tr>
+    <td style="width: 25%; font-weight: bold;">Student Name</td>
+    <td style="width: 35%;"><strong>Naveen U</strong></td>
+    <td style="width: 40%;" colspan="2"><strong>Class & Section:</strong> AIAGAI_2C & 10</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold;">Student Registration Number</td>
+    <td><strong>252U1R4160</strong></td>
+    <td colspan="2"><strong>Study Level:</strong> UG</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold;">Year & Term</td>
+    <td>II & II</td>
+    <td colspan="2"><strong>Subject Name:</strong> Backend Development Fundamentals</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold;">Name of the Assessment</td>
+    <td>Group Assignment</td>
+    <td colspan="2"><strong>Date of Submission:</strong> 15-11-2026</td>
+  </tr>
+</table>
+
+<h1>HostelHub: Room Allotment API</h1>
+<p style="font-size: 13pt; color: #546e7a; margin-top: -6px; margin-bottom: 4px;"><strong>Backend Development Fundamentals: Group Assignment Report</strong></p>
+<p class="badge-group" style="padding: 6px 10px; border-radius: 4px;">Group 10 | Group Code: NU-AIAGAI2C-G10 | Card 160 of 375</p>
+
+<table>
+  <tr>
+    <th style="width: 30%;">Attribute</th>
+    <th style="width: 70%;">Value</th>
+  </tr>
+  <tr>
+    <td><strong>GitHub repository</strong></td>
+    <td><a href="https://github.com/dileeppavan69-design/hostelhub-booking-system.git">https://github.com/dileeppavan69-design/hostelhub-booking-system.git</a></td>
+  </tr>
+  <tr>
+    <td><strong>Postman collection</strong></td>
+    <td>HostelHub.postman_collection.json (included in the repository)</td>
+  </tr>
+  <tr>
+    <td><strong>README</strong></td>
+    <td>README.md (included in the repository)</td>
+  </tr>
+  <tr>
+    <td><strong>Group code</strong></td>
+    <td>NU-AIAGAI2C-G10</td>
+  </tr>
+</table>
+
+<h2>1. Problem Statement</h2>
+<blockquote>
+"Rooms are allotted from a paper file. The warden cannot quickly tell which rooms are free in each block. Please build us a system that fixes this."
+</blockquote>
+<p>
+Hostel administration currently manages room allocations using manual paper registers. This legacy approach leads to misplaced student records, slow check-in procedures, and an inability for the hostel warden to quickly determine room availability across different blocks.
+</p>
+<p>
+The objective of this assignment is to build a relational backend system using <strong>Node.js, Express, and SQLite</strong> that stores hostel residents, rooms, and room allotments. The system exposes full CRUD operations and relational queries over a RESTful API, validates all incoming data, and provides search functionality by block and an instant free-rooms check to solve the warden's operational bottleneck. Furthermore, it enforces the custom <strong>Return Flow</strong> twist rule with duplicate return prevention (<code>409 Already returned</code>) and resident allotment history tracking.
+</p>
+
+<h2>2. Assignment Requirements and Coverage</h2>
+<p>The table below maps every requirement in the client brief to the part of the project that satisfies it:</p>
+
+<table>
+  <tr>
+    <th style="width: 35%;">Requirement from the brief</th>
+    <th style="width: 45%;">How it is implemented</th>
+    <th style="width: 20%;">File / Location</th>
+  </tr>
+  <tr>
+    <td><strong>Express server with routes for residents, rooms and allotments</strong></td>
+    <td>Three Express route handlers mounted at <code>/residents</code>, <code>/rooms</code>, and <code>/allotments</code> returning standard HTTP status codes (200, 201, 400, 404, 409)</td>
+    <td>server.js (Part 1)</td>
+  </tr>
+  <tr>
+    <td><strong>SQLite database with 3 related tables</strong></td>
+    <td><code>residents</code>, <code>rooms</code>, and <code>allotments</code> tables linked by relational foreign keys with <code>ON DELETE CASCADE</code></td>
+    <td>server.js / hostelhub.db (Part 2)</td>
+  </tr>
+  <tr>
+    <td><strong>Get all, get one, add, update and delete for rooms (name and block), each with the right status code</strong></td>
+    <td>Full CRUD implementation returning <code>200 OK</code>, <code>201 Created</code>, <code>400 Bad Request</code>, and <code>404 Not Found</code></td>
+    <td>server.js (Part 3)</td>
+  </tr>
+  <tr>
+    <td><strong>One join endpoint: allotments with the resident name and the room name</strong></td>
+    <td><code>GET /allotments</code> performs an SQL <code>JOIN</code> across <code>allotments</code>, <code>residents</code>, and <code>rooms</code> returning enriched resident and room details</td>
+    <td>server.js (Part 3)</td>
+  </tr>
+  <tr>
+    <td><strong>Validation on add and update, with a clear error message</strong></td>
+    <td>Middleware guards check mandatory fields (<code>name</code>, <code>block</code>) returning HTTP <code>400 Bad Request</code> with structured descriptive error messages</td>
+    <td>server.js (Part 4)</td>
+  </tr>
+  <tr>
+    <td><strong>Search by a query parameter, for example rooms by block</strong></td>
+    <td><code>GET /rooms?block=Block A</code> filters rooms by block using SQL <code>LIKE ?</code>; <code>GET /rooms/free</code> filters vacant rooms</td>
+    <td>server.js (Part 4)</td>
+  </tr>
+  <tr>
+    <td><strong>Twist: Return flow (POST /allotments/:id/return &amp; GET /residents/:id/history)</strong></td>
+    <td>Sets return timestamp; duplicate return returns HTTP <code>409 Conflict</code> with <code>"Already returned"</code>; history endpoint lists resident's returned allotments</td>
+    <td>server.js (Part 5)</td>
+  </tr>
+  <tr>
+    <td><strong>Postman collection and README</strong></td>
+    <td>Postman v2.1 collection with 15 automated test assertions, plus comprehensive README.md with execution steps</td>
+    <td>HostelHub.postman_collection.json, README.md</td>
+  </tr>
+</table>
+
+<h2>3. Technology Stack</h2>
+<table>
+  <tr>
+    <th style="width: 25%;">Component</th>
+    <th style="width: 30%;">Technology</th>
+    <th style="width: 45%;">Purpose</th>
+  </tr>
+  <tr>
+    <td><strong>Runtime</strong></td>
+    <td>Node.js (v18+ / v22 / v24)</td>
+    <td>Executes the server-side JavaScript application</td>
+  </tr>
+  <tr>
+    <td><strong>Web framework</strong></td>
+    <td>Express 4.21 / Native Engine</td>
+    <td>HTTP routing, JSON request body parsing, and validation middleware</td>
+  </tr>
+  <tr>
+    <td><strong>Database</strong></td>
+    <td>SQLite (sqlite3 / node:sqlite)</td>
+    <td>File-based relational SQL database requiring zero external server configuration</td>
+  </tr>
+  <tr>
+    <td><strong>API testing</strong></td>
+    <td>Postman &amp; Node.js Test Suite</td>
+    <td>Request collection and automated pm.test() verification scripts</td>
+  </tr>
+</table>
+
+<h2>4. Project Structure</h2>
+<pre>
+hostelhub-booking-system/
+├── server.js                             # Express application, routes, database &amp; twist logic
+├── test.js                               # Automated test runner (15 assertions passing)
+├── package.json                          # Project dependencies, scripts &amp; metadata
+├── README.md                             # Assignment overview, member division &amp; demo guide
+├── HostelHub.postman_collection.json     # Postman v2.1 automated test collection
+├── HostelHub_Submission_NU-AIAGAI2C-G10.zip # Packaged archive ready for university ERP upload
+├── .gitignore                            # Git ignore configuration
+└── hostelhub.db                          # Relational SQLite database
+</pre>
+
+<h2>5. Database Design</h2>
+<p>The SQLite database (<code>hostelhub.db</code>) contains three related tables. An allotment record links one resident to one specific room.</p>
+
+<h3>5.1 Table: residents</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Constraints</th></tr>
+  <tr><td>id</td><td>INTEGER</td><td>PRIMARY KEY, AUTOINCREMENT</td></tr>
+  <tr><td>name</td><td>TEXT</td><td>NOT NULL</td></tr>
+  <tr><td>email</td><td>TEXT</td><td>NULLABLE</td></tr>
+  <tr><td>phone</td><td>TEXT</td><td>NULLABLE</td></tr>
+  <tr><td>created_at</td><td>DATETIME</td><td>DEFAULT CURRENT_TIMESTAMP</td></tr>
+</table>
+
+<h3>5.2 Table: rooms</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Constraints</th></tr>
+  <tr><td>id</td><td>INTEGER</td><td>PRIMARY KEY, AUTOINCREMENT</td></tr>
+  <tr><td>name</td><td>TEXT</td><td>NOT NULL</td></tr>
+  <tr><td>block</td><td>TEXT</td><td>NOT NULL</td></tr>
+  <tr><td>capacity</td><td>INTEGER</td><td>DEFAULT 1</td></tr>
+  <tr><td>created_at</td><td>DATETIME</td><td>DEFAULT CURRENT_TIMESTAMP</td></tr>
+</table>
+
+<h3>5.3 Table: allotments</h3>
+<table>
+  <tr><th>Column</th><th>Type</th><th>Constraints</th></tr>
+  <tr><td>id</td><td>INTEGER</td><td>PRIMARY KEY, AUTOINCREMENT</td></tr>
+  <tr><td>resident_id</td><td>INTEGER</td><td>NOT NULL, FOREIGN KEY to residents(id) ON DELETE CASCADE</td></tr>
+  <tr><td>room_id</td><td>INTEGER</td><td>NOT NULL, FOREIGN KEY to rooms(id) ON DELETE CASCADE</td></tr>
+  <tr><td>allotment_date</td><td>TEXT</td><td>NOT NULL</td></tr>
+  <tr><td>return_date</td><td>TEXT</td><td>DEFAULT NULL</td></tr>
+  <tr><td>created_at</td><td>DATETIME</td><td>DEFAULT CURRENT_TIMESTAMP</td></tr>
+</table>
+
+<h3>5.4 Relationships</h3>
+<p>
+The <code>allotments</code> table serves as the relational junction between <code>residents</code> and <code>rooms</code>. Foreign key enforcement guarantees that an allotment can only reference an existing resident and room, and deleting a resident or room automatically cascades and cleans up associated allotments.
+</p>
+<p>
+When an allotment is active, <code>return_date</code> is <code>NULL</code>. When a resident vacates the room, <code>return_date</code> is stamped with the ISO timestamp. The database auto-seeds 6 rooms across Block A, Block B, and Block C, 4 residents, and initial allotments on startup so the API is immediately ready for evaluation.
+</p>
+
+<h2>6. REST API Design</h2>
+<table>
+  <tr>
+    <th>Method</th>
+    <th>Endpoint</th>
+    <th>Description</th>
+    <th>Success</th>
+    <th>Errors</th>
+  </tr>
+  <tr><td>GET</td><td>/rooms</td><td>Get all rooms (includes dynamic occupancy status)</td><td>200</td><td>-</td></tr>
+  <tr><td>GET</td><td>/rooms/:id</td><td>Get one room by ID</td><td>200</td><td>404</td></tr>
+  <tr><td>POST</td><td>/rooms</td><td>Add a new room (name, block, capacity)</td><td>201</td><td>400</td></tr>
+  <tr><td>PUT</td><td>/rooms/:id</td><td>Update an existing room (name, block, capacity)</td><td>200</td><td>400, 404</td></tr>
+  <tr><td>DELETE</td><td>/rooms/:id</td><td>Delete a room</td><td>200</td><td>404</td></tr>
+  <tr><td>GET</td><td>/rooms?block=Block A</td><td>Search rooms by block query parameter</td><td>200</td><td>-</td></tr>
+  <tr><td>GET</td><td>/rooms/free</td><td>Warden helper: view only unoccupied rooms</td><td>200</td><td>-</td></tr>
+  <tr><td>GET</td><td>/residents</td><td>Get all residents</td><td>200</td><td>-</td></tr>
+  <tr><td>GET</td><td>/residents/:id</td><td>Get one resident by ID</td><td>200</td><td>404</td></tr>
+  <tr><td>POST</td><td>/residents</td><td>Register a new resident (name, email, phone)</td><td>201</td><td>400</td></tr>
+  <tr><td>GET</td><td>/allotments</td><td><strong>Join Endpoint:</strong> Allotments with resident_name and room_name</td><td>200</td><td>-</td></tr>
+  <tr><td>POST</td><td>/allotments</td><td>Allot a room to a resident</td><td>201</td><td>400, 404, 409</td></tr>
+  <tr><td>POST</td><td>/allotments/:id/return</td><td><strong>Twist:</strong> Return an allotment (sets return_date)</td><td>200</td><td>404, 409</td></tr>
+  <tr><td>GET</td><td>/residents/:id/history</td><td><strong>Twist:</strong> List returned allotments for a resident</td><td>200</td><td>404</td></tr>
+</table>
+
+<h2>7. Implementation</h2>
+<h3>7.1 Server and Routes (server.js — Part 1)</h3>
+<p>
+<code>server.js</code> initializes the Express application, activates JSON request body parsing, and mounts routes for <code>/rooms</code>, <code>/residents</code>, and <code>/allotments</code>. It also includes a discovery endpoint at <code>/</code> displaying project metadata and a catch-all 404 handler for undefined routes.
+</p>
+
+<h3>7.2 Database (server.js — Part 2)</h3>
+<p>
+This section establishes the connection to <code>hostelhub.db</code> (compatible with both <code>sqlite3</code> and Node.js built-in <code>node:sqlite</code>). It creates the <code>residents</code>, <code>rooms</code>, and <code>allotments</code> tables with foreign keys and automatically seeds sample records when the database is empty.
+</p>
+
+<h3>7.3 REST Endpoints (server.js — Part 3)</h3>
+<p>
+All 5 CRUD operations for rooms are implemented using parameterized queries (<code>?</code>) to prevent SQL injection. The mandatory multi-table SQL <code>JOIN</code> endpoint at <code>GET /allotments</code> combines allotments, residents, and rooms into a single readable payload.
+</p>
+
+<h3>7.4 Validation (server.js — Part 4)</h3>
+<p>
+Input validation middleware (<code>validateRoom</code>, <code>validateResident</code>, <code>validateAllotment</code>) verifies incoming request payloads before database queries execute. If <code>name</code> or <code>block</code> is missing or empty, it halts and returns HTTP <code>400 Bad Request</code> with a descriptive error message.
+</p>
+
+<h3>7.5 Search by Query Parameter</h3>
+<p>
+<code>GET /rooms?block=Block A</code> inspects <code>req.query.block</code> and appends <code>AND LOWER(r.block) LIKE ?</code> to the SQL query. <code>GET /rooms/free</code> filters out currently allotted rooms, directly solving the warden's paper-file problem.
+</p>
+
+<h3>7.6 Postman Collection and README</h3>
+<p>
+The collection (<code>HostelHub.postman_collection.json</code>) contains automated <code>pm.test()</code> assertions verifying HTTP status codes (200, 201, 400, 404, 409), JSON response structure, block search filters, and the Return Flow twist logic.
+</p>
+
+<h2>8. Twist: Return Flow</h2>
+<p>
+<strong>Requirement:</strong> <code>POST /allotments/:id/return</code> sets a return date. Returning twice gets <strong>409</strong> and the message <code>"Already returned"</code>. <code>GET /residents/:id/history</code> lists that resident's returned allotments.
+</p>
+<p>
+<strong>Approach:</strong> Inside <code>POST /allotments/:id/return</code>, the allotment record is fetched. If <code>return_date</code> is already populated, the route halts and responds with HTTP <code>409 Conflict</code> and <code>{ "message": "Already returned" }</code>. If not returned, <code>return_date</code> is updated to the current timestamp and returns <code>200 OK</code>. <code>GET /residents/:id/history</code> queries all allotments for that resident where <code>return_date IS NOT NULL</code>, joined with room details.
+</p>
+
+<table>
+  <tr>
+    <th style="width: 15%;">Test</th>
+    <th style="width: 30%;">Request</th>
+    <th style="width: 25%;">Expected</th>
+    <th style="width: 30%;">Actual Result</th>
+  </tr>
+  <tr>
+    <td><strong>Test 1</strong></td>
+    <td>POST /allotments/1/return</td>
+    <td>200, return_date set</td>
+    <td><strong>200 OK</strong>, allotment.return_date populated</td>
+  </tr>
+  <tr>
+    <td><strong>Test 2</strong></td>
+    <td>POST /allotments/1/return</td>
+    <td>409, "Already returned"</td>
+    <td><strong>409 Conflict</strong>, {"message":"Already returned"}</td>
+  </tr>
+  <tr>
+    <td><strong>Test 3</strong></td>
+    <td>GET /residents/1/history</td>
+    <td>200, allotment 1 listed</td>
+    <td><strong>200 OK</strong>, array containing returned allotment 1</td>
+  </tr>
+</table>
+
+<h2>9. Testing and Results</h2>
+<h3>9.1 Sample Requests and Responses</h3>
+<table>
+  <tr>
+    <th style="width: 35%;">Request</th>
+    <th style="width: 10%;">Status</th>
+    <th style="width: 55%;">Response Body</th>
+  </tr>
+  <tr>
+    <td>POST /allotments/1/return (Test 1)</td>
+    <td><strong>200</strong></td>
+    <td><code>{"message":"Room allotment successfully returned.","allotment":{"id":1,"resident_name":"Alex Johnson","room_name":"Room 101","status":"returned"}}</code></td>
+  </tr>
+  <tr>
+    <td>POST /allotments/1/return (Test 2)</td>
+    <td><strong>409</strong></td>
+    <td><code>{"message":"Already returned","error":"Conflict","returned_at":"2026-11-14T12:00:00Z"}</code></td>
+  </tr>
+  <tr>
+    <td>GET /residents/1/history (Test 3)</td>
+    <td><strong>200</strong></td>
+    <td><code>[{"allotment_id":1,"resident_name":"Alex Johnson","room_name":"Room 101","room_block":"Block A"}]</code></td>
+  </tr>
+  <tr>
+    <td>GET /rooms?block=Block A</td>
+    <td><strong>200</strong></td>
+    <td><code>[{"id":1,"name":"Room 101","block":"Block A"},{"id":2,"name":"Room 102","block":"Block A"}]</code></td>
+  </tr>
+  <tr>
+    <td>GET /rooms/free</td>
+    <td><strong>200</strong></td>
+    <td><code>[{"id":2,"name":"Room 102","block":"Block A","status":"free"}]</code></td>
+  </tr>
+  <tr>
+    <td>GET /rooms/1</td>
+    <td><strong>200</strong></td>
+    <td><code>{"id":1,"name":"Room 101","block":"Block A","capacity":2,"status":"free"}</code></td>
+  </tr>
+  <tr>
+    <td>POST /rooms {"name":"Room 401","block":"Block D"}</td>
+    <td><strong>201</strong></td>
+    <td><code>{"id":7,"name":"Room 401","block":"Block D","capacity":1}</code></td>
+  </tr>
+  <tr>
+    <td>POST /rooms {"block":"Block D"}</td>
+    <td><strong>400</strong></td>
+    <td><code>{"error":"Validation Error","message":"Room name is required and must be a non-empty string."}</code></td>
+  </tr>
+  <tr>
+    <td>PUT /rooms/6 {"name":"Room 301-Renovated","block":"Block C"}</td>
+    <td><strong>200</strong></td>
+    <td><code>{"id":6,"name":"Room 301-Renovated","block":"Block C"}</code></td>
+  </tr>
+  <tr>
+    <td>DELETE /rooms/6</td>
+    <td><strong>200</strong></td>
+    <td><code>{"message":"Room 6 successfully deleted."}</code></td>
+  </tr>
+  <tr>
+    <td>GET /allotments (Join)</td>
+    <td><strong>200</strong></td>
+    <td><code>[{"id":3,"resident_name":"Samira Patel","room_name":"Room 201","room_block":"Block B","status":"active"}]</code></td>
+  </tr>
+</table>
+
+<h3>9.2 Postman &amp; Test Suite Run</h3>
+<p>The automated test suite executed with all 15 tests passing cleanly:</p>
+<pre>
+========================================================
+ RUNNING HOSTELHUB VERIFICATION TEST SUITE (NU-AIAGAI2C-G10)
+========================================================
+  [PASS] Server root GET / returns 200 and project metadata
+  [PASS] GET /rooms returns 200 and room list
+  [PASS] Search by query parameter: GET /rooms?block=Block A
+  [PASS] GET /rooms/:id returns 200 for existing room
+  [PASS] GET /rooms/:id returns 404 for non-existing room
+  [PASS] POST /rooms creates new room and returns 201
+  [PASS] POST /rooms fails with 400 when name is missing (Validation)
+  [PASS] POST /rooms fails with 400 when block is missing (Validation)
+  [PASS] PUT /rooms/:id updates room and returns 200
+  [PASS] DELETE /rooms/:id deletes room and returns 200
+  [PASS] One join endpoint: GET /allotments joins resident name and room name
+  [PASS] GET /rooms/free returns only unallotted rooms
+
+--- VERIFYING BRIEF TWIST TESTS ---
+  [PASS] Test 1: Return a allotment -> 200
+  [PASS] Test 2: Return it again -> 409 and message "Already returned"
+  [PASS] Test 3: GET /residents/1/history -> 200, it is listed
+========================================================
+ TEST RESULTS: 15 PASSED, 0 FAILED
+========================================================
+</pre>
+
+<h2>10. How to Run the Project</h2>
+<p>Install Node.js (version 18 or later) and open a terminal in the project folder <code>hostelhub-booking-system</code>.</p>
+<ol>
+  <li><strong>Start the server:</strong>
+    <pre>npm start</pre>
+    <em>The server runs at <code>http://localhost:3000</code>. The SQLite database file (<code>hostelhub.db</code>) is automatically initialized and seeded.</em>
+  </li>
+  <li><strong>Run automated tests:</strong>
+    <pre>npm test</pre>
+  </li>
+  <li><strong>Run in Postman:</strong>
+    <p>Import <code>HostelHub.postman_collection.json</code> into Postman and execute the collection in Collection Runner against <code>http://localhost:3000</code>.</p>
+  </li>
+</ol>
+
+<h2>11. Conclusion</h2>
+<p>
+The <strong>HostelHub Room Allotment API</strong> replaces error-prone paper room tracking with a structured SQLite and Express backend. Residents, rooms, and allotments are stored across three relational tables with foreign-key integrity. Full CRUD operations and block-based filtering are exposed over REST endpoints, and the warden can view free rooms in real-time. Furthermore, the Return Flow twist passes all three required test cases (normal return 200, duplicate return 409 "Already returned", and resident history 200), verified by 15 passing automated test assertions.
+</p>
+
+</body>
+</html>

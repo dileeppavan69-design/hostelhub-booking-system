@@ -726,7 +726,7 @@ app.get('/residents/:id/history', async (req, res) => {
 async function startServer() {
   await seedDatabase();
   console.log(`Database engine: [${db.driver}]`);
-  const server = app.listen(PORT, () => {
+  const server = app.listen(PORT, '0.0.0.0', () => {
     console.log('====================================================');
     console.log(` HostelHub API Server is running on port ${PORT}`);
     console.log(` Local URL: http://localhost:${PORT}`);
